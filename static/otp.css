@@ -1,0 +1,30 @@
+h1{text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.5);
+  padding: 15px;
+}
+.text-line {
+    background-color: transparent;
+    color:black;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: black solid 1.5px;
+}
+
+#otpform{
+  font-size: 35px;
+}
+
+.btn{
+  width: 100%;
+  background: none;
+  border: 5px solid #4caf50;
+  color: black;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+}
