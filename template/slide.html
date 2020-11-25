@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link rel="stylesheet" href="{{url_for('static', filename='style1.css')}}">
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<style>
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+.active {
+  background-color: #717171;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1;}
+}
+</style>
+</head>
+<body>
+
+<div class="slideshow-container">
+<center>
+<div class="mySlides fade"><br><br>
+  <div style="font-size: 3rem; color: teal; margin-top:150px">Indian Institute Of Information Technolgy, Bhagalpur</div>
+  <br><br><br><br><br><br><br><br>
+  <img src="{{url_for('static',filename='logo.png')}}" style="width: 20%"><br><br><br><br><br><br>
+  <div style="font-size: 55px; font-style:italic">LEAVE APPLICATION FORM</div>
+</div>
+</center>
+
+<div class="mySlides fade">
+  <form  action="{{url_for('home')}}" method="post">
+    <center>
+      <table><tr><td><a href="https://www.iiitbh.ac.in/"><img src="{{url_for('static',filename='150dpi.png')}}" height=80px></a></td><td><h1>भारतीय सूचना प्रौद्योगिकी संस्थान भागलपुर<br>Indian Institute of Information Technology Bhagalpur</h1></td></tr></table>
+    </center>
+
+<div class="login-box" style="margin-top: 400px">
+    <div class="textbox">
+      <i class="fas fa-user"></i>
+      <input type="text" placeholder="Username" name="v_username" required>
+    </div>
+    <div class="textbox">
+      <i class="fas fa-lock"></i>
+      <input type="password" placeholder="Password" name="v_password" id="v_password">
+    </div>
+    <input type="checkbox" onclick="passwordcheck()">Show Password
+    <br><br>
+      CATEGORY&ensp;:-
+    <select name="v_category" placeholder="Select A category">
+      <option value="faculty">FACULTY</option>
+      <option value="admin">ADMIN</option>
+      <option value="others">TECHNICAL STAFF</option>
+      <option value="staff">OTHER STAFF</option>
+  </select>
+  <br><br>
+    <button class="btn">Submit</button>
+  <p>
+      Not yet a member ? <a href="{{url_for('register')}}">Sign up</a><br>
+      Forgot Password ? <a href="{{url_for('mailcnfrm')}}">Reset Password</a>
+  </p>
+  </div>
+</form>
+</div>
+</div>
+<div>
+  <span class="dot"></span>
+</div>
+<br><br><center>
+<footer class="footer">
+  <div class="footer-content">
+    All rights reserved<br>
+    Property Of <a href="{{url_for('developer_info')}}">Team-ELMS</a> CSE IIITBH
+  </div>
+</footer></center>
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 2}
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 4000);
+}
+function passwordcheck(){
+  var x = document.getElementById("v_password");
+  if(x.type === "password"){
+    x.type = "name";
+  }
+  else{
+    x.type = "password";
+  }
+}
+</script>
+</body>
+</html>

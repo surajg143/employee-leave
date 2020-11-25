@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Password reset</title>
+	<link rel="stylesheet" type="text/css" href="style1.css">
+</head>
+<body>
+	<script type="text/javascript">
+	var check = function()
+	{
+  	if (document.getElementById('newpswd').value ==document.getElementById('cnfrmpswd').value)
+  	{
+    	document.getElementById('message').style.color = 'green';
+    	document.getElementById('message').innerHTML = 'matching';
+  	}
+  	else
+  	{
+    	document.getElementById('message').style.color = 'red';
+    	document.getElementById('message').innerHTML = 'not matching';
+  	}
+}
+	</script>
+<center>
+	<center>
+		<table><tr><td><a href="https://www.iiitbh.ac.in/"><img src="{{url_for('static',filename='150dpi.png')}}" height=80px></a></td><td><h1>भारतीय सूचना प्रौद्योगिकी संस्थान भागलपुर<br>Indian Institute of Information Technology Bhagalpur</h1></td></tr></table>
+	</center>
+	<div class="hader">
+	<h1> Password Reset</h1>
+</div>
+<form method="post" action="{{url_for('pswdreset')}}">
+	<label>
+
+	</label>
+<label>
+	<h3 style="margin: 200px"> New Password&ensp; &emsp; &emsp;<input type="Password" name="newpassword" id="newpswd"><br><br>
+</label>
+<label>
+	 Confirm Password &emsp;<input type="Password" name="cnfrmpswd" id="cnfrmpswd" onkeyup="check();">
+	<br> &emsp; &emsp; &emsp; &emsp; &emsp;<span id='message'></span><br><br>
+</label>
+	 <button class="btn" name="pswdsubmit">Submit</button></h3>
+</center>
+</form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+<title>Station Leave Appliaction</title>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='leave2.css')}}">
+</head>
+<body>
+	<b>
+	<center>
+		<a href="#" onclick="window.print()">Print</a>
+		<div id="img">
+	<table style="width:90%">
+		<tr>
+			<th>
+			<h1>INDIAN INSTITUTE OF INFORMATION TECHNOLOGY BHAGALPUR</h1>
+
+		</th>
+	</tr>
+	<tr>
+	<th>
+	<form method="post" action="{{url_for('extend')}}">
+	<center><h1><b><u>Extend Application</u></b></h1></center><br>
+	<h2>&emsp; &emsp; &emsp; I Have Been Granted Leave From <input type="date" class="text-line" name="" style="font-size: 10pt"> To <input type="date" class="text-line" name="" style="font-size: 10pt"> But, Due To Some Unavoidable Circumstances,<br><br>&emsp; &emsp; &emsp; &emsp;
+		I Want My Leave To Be Extended Upto <input type="date" class="text-line" name="extend_to" style="font-size: 10pt" required> So PLease Grant My Leave  <br></h2>
+	<center>
+	<br>
+	</div>
+	</center>
+</th>
+	</tr>
+	</table>
+</div>
+      <h3>  <button class="btn">Submit</button></h3>
+</form>
+</center>
+</b>
+</body>
+</html>

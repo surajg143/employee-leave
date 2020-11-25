@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}
+Login/SignUp
+{% endblock %}
+{% block body %}
+    <div class="alert-danger" role="alert"><center>{{message}}</center></div>
+    <div class="contents">
+      <div class="form-group">
+        <form action="{{url_for('index')}}" method="post" class="register">
+          <b><legend>Register Here </legend></b>
+          <input type="text" name="name" placeholder="Your name here"><br>
+          <input type="email" placeholder="Enter Your Email" name="username" autocomplete="off"><br>
+          <input type="password" placeholder="Your Password" name="password" autocomplete="off"><br>
+          <input type="password" placeholder="Retype password" name="repassword" autocomplete="off"><br>
+          <select placeholder="Select CAtegory" name="category">
+            <option value="admin">Admin</option>
+            <option value="faculty">Faculty</option>
+            <option value="others">Others</option>
+          </select><br></br>
+          <button name="OK" class="btn btn-md">Submit</button>
+        </form>
+
+      <form action="{{url_for('home')}}" method="post" class="signin">
+        <b><legend>Sign In</legend></b>
+        <input type="email" name="v_username" placeholder="Username"  autocomplete="off">
+        <br>
+        <input type="password" name="v_password" placeholder="Password" autocomplete="off">
+        <br>
+        <input type="radio" class="category" name="v_category" value="admin">Admin
+        <input type="radio" class="category" name="v_category" value="faculty">Faculty
+        <input type="radio" class="category" name="v_category" value="others">Others
+        <br><br>
+        <button class="btn btn-md">Sign In</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

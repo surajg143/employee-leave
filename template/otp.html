@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OTP Page</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='otp.css')}}">
+</head>
+<body>
+        <h1>One Time Password</h1>
+        <center>{{message}}</center>
+        <form action="{{url_for('otpcheck')}}" method = "post">
+          <div id = "otp" style="font-size:30px">
+	         <center><h2 style="margin: 150px"> OTP<br><br>
+	           <input type="number" name="otpverify" required placeholder="One Time Password" class="text-line" style="font-size:20px"><br><br>
+	           <button class="btn" style="width:30vw">Submit</button></h2></center>
+           </div>
+        </form>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block title %}
+Admin Page
+{% endblock %}
+{% block body %}
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://www.iiitbh.ac.in/">IIIT</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{{url_for('home')}}">Home</a></li>
+      {% if leaveapplied == 1 %}
+        <div class="blink"><li><a href = "{{url_for('rejoin')}}">Rejoin</a></li></div>
+      {% else %}
+        <li><a href = "{{url_for('leave')}}">Apply for leave</a></li>
+      {% endif %}
+
+        <li><a href = "{{url_for('list')}}">List Of Applications</a></li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href"#"><span class="glyphicon glyphicon-user"></span>{{userdetail.name}}</a></li>
+      <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+ {% for list in lists %}
+ <div class="fac_list"><p>
+   <h3><i class="far fa-user"></i> {{list.id}}  </h3>
+   <br>Leave From:{{list.leave_from}} Upto:{{list.leave_upto}}
+   <br><button class="btn" onclick="approve({{list.id}})">Approve</button>  <button class="btn">Disapprove</button>
+</p></div>
+ {% endfor %}
+ <div id="confirmation"></div>
+ {% endblock %}
+
+
+ <li><div class="dropdown show">
+ <li><a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   List of Applications
+     </a>
+     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+       <a class="dropdown-item" href="#">Approved</a>
+       <a class="dropdown-item" href="{{url_for('list')}}">Pending</a>
+       <a class="dropdown-item" href="#">Disapproved</a>
+     </div></li>
+   </div></li>
+
+   <script type="text/javascript" language="javascript">
+ 	function EnableDisableTextBox() {
+         var yes = document.getElementById("yes");
+         var ft = document.getElementById("ft");
+        ft.disabled = yes.checked ? false : true;
+         if (!ft.disabled) {
+             ft.focus();
+         }
+     }
+ 	</script>
+
+
+
+
+
+  <div id="admin">
+    {% for list in lists_admin %}
+    <div class="fac_list"><p>
+      <h3><i class="far fa-user"></i> Applicant ID: {{list.id}}  &emsp;  Applicant Name: {{list.name}}&emsp;  Admin Staff  </h3>
+      <br>Leave From:{{list.leave_from}} &emsp; Upto:{{list.leave_upto}}
+      <br>
+      <div id ="admintext{{list.id}}" style="display:none"><textarea id="rcomment" rows="4" cols="50" maxlength="150" placeholder="Reason for Disapproval"autofocus> </textarea></div>
+      <br><div id="admin{{list.id}}"><button class="btn" onclick="approve({{list.id}},'admin')">Approve</button>  <button class="btn" onclick="disapprove({{list.id}})">Disapprove</button></div>
+      <br><a class="btn" href="/applicant/{{list.id}}/admin">Details</a>
+   </p></div>
+    {% endfor %}
+  </div>
+
+  <div id="others">
+    {% for list in lists_others %}
+    <div class="fac_list"><p>
+      <h3><i class="far fa-user"></i> Applicant ID: {{list.id}}  &emsp;  Applicant Name: {{list.name}}&emsp;  Admin Staff  </h3>
+      <br>Leave From:{{list.leave_from}} &emsp; Upto:{{list.leave_upto}}
+      <br>
+      <div id ="otherstext{{list.id}}" style="display:none"><textarea id="rcomment" rows="4" cols="50" maxlength="150" placeholder="Reason for Disapproval"autofocus> </textarea></div>
+      <br><div id="others{{list.id}}"><button class="btn" onclick="approve({{list.id}},'others')">Approve</button>  <button class="btn" onclick="disapprove({{list.id}})">Disapprove</button></div>
+      <br><a class="btn" href="/applicant/{{list.id}}/others">Details</a>
+   </p></div>
+   {% endfor %}
+  </div>
+
+  <div id="staff">
+    {% for list in lists_staff %}
+    <div class="fac_list"><p>
+      <h3><i class="far fa-user"></i> Applicant ID: {{list.id}}  &emsp;  Applicant Name: {{list.name}}&emsp;  Admin Staff  </h3>
+      <br>Leave From:{{list.leave_from}} &emsp; Upto:{{list.leave_upto}}
+      <br>
+      <div id ="stafftext{{list.id}}" style="display:none"><textarea id="rcomment" rows="4" cols="50" maxlength="150" placeholder="Reason for Disapproval"autofocus> </textarea></div>
+      <br><div id="staff{{list.id}}"><button class="btn" onclick="approve({{list.id}},'staff')">Approve</button>  <button class="btn" onclick="disapprove({{list.id}})">Disapprove</button></div>
+      <br><a class="btn" href="/applicant/{{list.id}}/staff">Details</a>
+   </p></div>
+    {% endfor %}
+  </div>
+
+   <div id="confirmation"></div>

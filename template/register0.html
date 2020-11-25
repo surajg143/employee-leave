@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign up Page</title>
+	<script src="{{url_for('static',filename='script.js')}}"></script>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style1.css')}}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+<body style= "font-family: sans-serif;
+  background: url(pic.jpg) no-repeat;
+  background-size: cover;">
+	<div class="header">
+		<center><table><tr><td><a href="https://www.iiitbh.ac.in/"><img src="{{url_for('static',filename='150dpi.png')}}" height=80px></a></td><td><h1>भारतीय सूचना प्रौद्योगिकी संस्थान भागलपुर<br>Indian Institute of Information Technology Bhagalpur</h1></td></tr></table></center>
+
+	</div>
+
+
+
+		<div class="alert" role="alert" style="color:#a94442; background-color: #f2dede;border-color: #ebccd1; margin:6px;"><center>{{message}}</center></div>
+		<h2 style="width:100vw"><center><b>SIGN UP</b></center></h2>
+		<form action="{{url_for('register')}}" method="post" class="register">
+		<div class="login-box">
+			<div class="textbox">
+			<i class="fas fa-user"></i>
+			<input type="text" placeholder="Your Name Here" name="name" required value="" autocomplete="off">
+		</div>
+		<div class="textbox">
+			<i class="fas fa-envelope"></i>
+			<input type="email" placeholder="Enter Your Email" name="username" required value=" " autocomplete="off" id="username">
+		</div>
+
+		<div class="textbox">
+		<i class="far fa-calendar-alt"></i>
+		<input type="number" placeholder="Your Age Here" name="age" required value="" autocomplete="off">
+	</div>
+		<input type="radio" name="gender" value="female">Female
+		<input type = "radio" name="gender" value="male">Male
+
+		<div class="textbox">
+			<i class="fas fa-lock"></i>
+			<input type="password" placeholder="Your Password" name="password" required autocomplete="off" id="password">
+		</div>
+		<div class="textbox">
+			<i class="fas fa-lock"></i>
+			<input type="password" placeholder="Confirm password" name="repassword" required autocomplete="off" id="repassword">
+		</div>
+
+    Category:-&ensp;
+  <select name="category" placeholder="Select Category">
+		<option value="faculty">FACULTY</option>
+		<option value="admin">ADMIN</option>
+		<option value="others">TECHNICAL STAFF</option>
+		<option value="staff">OTHER STAFF</option>
+</select><br><br>
+Department : <select name = "branch" id="branch">
+	<option value="CSE">CSE</option>
+	<option value = "ECE">ECE </option>
+	<option value = "MEA">MEA</option>
+	<option value="none">NA</option>
+</select>
+<br><br>
+POSITION : <select name = "position" >
+	<option value="None">None</option>
+	<option value="CAC Incharge">CAC Incharge</option>
+	<option value="Sports Incharge">Sports Incharge</option>
+	<option value="Student Affairs Incharge">Student Affairs Incharge</option>
+	<option value="HOD">HOD</option>
+</select><br><br>
+
+		<div class="input-group">
+			<center><button name="OK" class="btn">Submit</button></center>
+		</div>
+		<p>
+			Already a member ? <a href="{{url_for('login')}}">Sign in</a>
+		</p>
+	</form>
+	<script>
+		document.addEventListener("DOMContentLoaded",function(){
+			document.getElementById('repassword').keyup = () =>{
+				var password= document.getElementById('password').value;
+				var repassword = document.getElementById('repassword').value;
+				if (password != repassword)
+
+			};
+		})
+
+
+	</script>
+</body>
+</html>

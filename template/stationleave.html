@@ -1,0 +1,50 @@
+<html>
+<title>Station Leave Appliaction</title>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='leave.css')}}">
+</head>
+<body>
+	<b>
+	<center>
+		<a href="#" onclick="window.print()">Print</a>
+		<div id="img">
+	<table style="width:90%">
+		<tr>
+			<th>
+			<h1>INDIAN INSTITUTE OF INFORMATION TECHNOLOGY BHAGALPUR</h1>
+			{{message}}
+		</th>
+		</tr>
+		<br>
+		<tr>
+			<th>
+				<form method="post" action="{{url_for('submitstationleave')}}">
+			<h2><u>STATION LEAVE PERMISSION</u></h2><br>
+			<h2>This is to inform you that I am proceeding on leave w.e.f.
+				<input type="Date" class="text-line" name="" style="font-size: 15pt">FN<input type="radio" name="fnan">AN <input type="radio" name="fnan"> <input type="time">
+				<div class="cls">and will be out of station till  <input type="date" class="text-line" name="" style="font-size: 15pt">FN<input type="radio" name="fnan">AN <input type="radio" name="fnan"> <input type="time">
+				<br><br><br>Address during leave:<input type="text" class="text-line" name="address" style="font-size: 15pt"> &emsp; Contact Phone No. (if any): <input type="text" class="text-line" name="" style="font-size: 15pt">
+				<br><br>Date: <input type="date">
+				<div style="text-align: right">Name:<input type="text" class="text-line" name="" style="font-size: 15pt">
+				<br><br>Emp_No.: <input type="text" class="text-line" name="" style="font-size: 15pt">
+				<br><br>Designation: <input type="text" class="text-line" name=""  style="font-size: 15pt">
+				<br><br>Dept./Sec./Centre: <input type="text" class="text-line" name="" style="font-size: 15pt">
+				<br><br>Upload Signature: <input type="file" class="text-line" name="image" style="font-size: 15pt" id="image" oninput="filesize(this)">
+				<br>File Size should be less than 50KB<br>Only, JPG, JPEG
+			</div>
+			</h2>
+			</div>
+			</th>
+		</tr>
+	</table>
+</div><br><button onclick="window.close()">Submit</button>
+</form>
+</center>
+</b>
+<script>
+	function filesize(elem){
+		document.cookie = `filesize=${elem.files[0].size}`
+	}
+</script>
+</body>
+</html>

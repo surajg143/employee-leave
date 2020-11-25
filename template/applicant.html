@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}
+Applicant details
+{% endblock %}
+{% block body %}
+<h1><center> Applicant Detail </center></h1>
+<br><center><h2><i class="far fa-user" ></i> {{info.name}}</h2></center>
+<br>
+<br>
+<h3 style="margin:55px">
+  <br>Applicant ID : {{info.id}}
+  <br><br>Application No : {{query.application_no}}
+  <br><br>Applicant Name : {{info.name}}
+  <br><br>Applicant Age : {{info.age}}
+  <br><br>Applicant Branch : {{info.department}}
+  <br><br>Applicant Gender : {{info.gender}}
+  <br><br>Applicant Position : {{info.position}}*
+  <br><br>Available CL : {{info.available_cl}}
+  <br><br>Available PL : {{info.available_pl}}
+  <br><br>Available EL : {{info.available_el}}
+  <br><br>Available VL : {{info.available_vl}}
+  <br><br>Leave From : {{query.leave_from}}
+  <br><br>Leave Upto : {{query.leave_upto}}
+  <br><br> Total Duration : {{query.no_of_days}}
+  <br><br>Nature of leave : {{query.nature}}
+  <br><br>Reason : {{query.reason}}
+
+</h3>
+
+{% endblock %}

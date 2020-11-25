@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style1.css')}}">
+  </head>
+  <body style= "font-family: sans-serif;
+  background-size: cover;">
+    <form  action="{{url_for('home')}}" method="post">
+      <center><table><tr><td><a href="https://www.iiitbh.ac.in/"><img src="{{url_for('static',filename='150dpi.png')}}" height=80px></a></td><td><h1>भारतीय सूचना प्रौद्योगिकी संस्थान भागलपुर<br>Indian Institute of Information Technology Bhagalpur</h1></td></tr></table></center>
+      <div class="alert-danger" role="alert"><center>{{message}}</center></div>
+      <h2 style="width:100vw"><center><b>SIGN IN</b></center></h2>
+<div class="login-box">
+  <div class="textbox">
+    <i class="fas fa-user"></i>
+    <input type="text" placeholder="Username" name="v_username" required>
+  </div>
+  <div class="textbox">
+    <i class="fas fa-lock"></i>
+    <input type="password" placeholder="Password" name="v_password" id="v_password">
+  </div>
+  <input type="checkbox" onclick="passwordcheck()">Show Password
+  <br><br>
+    CATEGORY&ensp;:-&ensp;
+  <select name="v_category" placeholder="Select A category">
+    <option value="faculty">FACULTY</option>
+    <option value="admin">ADMIN</option>
+    <option value="others">TECHNICAL STAFF</option>
+    <option value="staff">OTHER STAFF</option>
+</select>
+<br><br>
+  <button class="btn">Submit</button>
+<p>
+    Not yet a member ? <a href="{{url_for('register')}}">Sign up</a><br>
+    Forgot Password ? <a href="{{url_for('mailcnfrm')}}">Reset Password</a>
+</p>
+</div>
+</form>
+
+  <script>
+  function passwordcheck(){
+    var x = document.getElementById("v_password");
+    if(x.type === "password"){
+      x.type = "name";
+    }
+    else{
+      x.type = "password";
+    }
+  }
+  </script>
+  </body>
+</html>
