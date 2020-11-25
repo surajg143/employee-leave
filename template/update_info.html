@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}
+Welcome
+{% endblock %}
+{% block body %}
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://www.iiitbh.ac.in/">IIIT</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{{url_for('home')}}">Home</a></li>
+      {% if leaveapplied == 1 %}
+        <li><a href= "{{url_for('printleave')}}">Print Leave</a></li>
+        <li><a href = "{{url_for('rejoin')}}">Rejoin</a></li>
+        <li><a href = "{{url_for('extend')}}">Extend Leave</a></li>
+      {% else %}
+        <li class="blink"><a href = "{{url_for('leave')}}">Apply for leave</a></li>
+      {% endif %}
+      {% if hod == 1 or admin==1 %}
+        <li><a href = "{{url_for('list')}}">List Of Applications</a></li>
+      {% endif %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href"#"><span class="glyphicon glyphicon-user"></span>{{userdetail.name}}</a></li>
+      <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<br><br>
+<form>
+  Update Name : <input type="text" placeholder="New Name Here" required name="name"><br><br>
+  Update Age&emsp; : <input type="number" placeholder="age" required name="age"><br><br>
+  Change Branch :
+ <select name = "branch" id="branch">
+	  <option value="CSE">CSE</option>
+	  <option value = "ECE">ECE </option>
+	  <option value = "MEA">MEA</option>
+	  <option value="none">NA</option>
+</select>
+<br><br>
+Change Position : <select name = "position" >
+	<option value="None">None</option>
+	<option value="CAC Incharge">CAC Incharge</option>
+	<option value="HOD MEA">HOD MEA</option>
+	<option value="HOD ECE">HOD ECE</option>
+	<option value="HOD CSE">HOD CSE</option>
+</select><br><br>
+<button class=".btn" id="update">Update</button>
+</form>
+
+{% endblock %}

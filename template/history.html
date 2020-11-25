@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block title %}
+History
+{% endblock %}
+
+{% block body %}
+<center><h1>My List</h1></center>
+{% for list in query %}
+
+<div class="fac_list">
+  <i class="fas fa-history"></i> Application No : {{list.application_no}} &emsp; Leave_from : {{list.leave_from}} &emsp; Leave_upto : {{list.leave_upto}}
+  &emsp;<b> Status : {% if list.approved == 0 %}Pending {% elif list.approved == 2 %}Disapproved &emsp;</b> Reason For Disapproval : {{list.comment}}{% else %}Approved {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

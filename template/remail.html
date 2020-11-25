@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style1.css">
+</head>
+<body>
+  <center>
+    <table><tr><td><a href="https://www.iiitbh.ac.in/"><img src="{{url_for('static',filename='150dpi.png')}}" height=80px></a></td><td><h1>भारतीय सूचना प्रौद्योगिकी संस्थान भागलपुर<br>Indian Institute of Information Technology Bhagalpur</h1></td></tr></table>
+  </center>
+    <form action="{{url_for('mailcnfrm')}}" method="post">
+        <center>
+            <div class="header">
+                <h1>Password Recover</h1>
+            </div><br>
+            <h>{{message}}</h>
+                <h3 style="margin: 250px">
+                    Enter your email address &emsp; <input type="email" name="mailid" required placeholder="Email">
+                    <br><br>
+                    <select name="category" placeholder="Select Category">
+                      <option value="faculty">FACULTY</option>
+                      <option value="admin">ADMIN</option>
+                      <option value="others">TECHNICAL STAFF</option>
+                      <option value="staff">OTHER STAFF</option>
+                  </select><br><br>
+                    <input type="submit">
+                </h3>
+        </center>
+    </form>
+</body>
+</html>

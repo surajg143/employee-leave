@@ -1,0 +1,224 @@
+<html>
+<title>Leave Appliaction</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='leaveapp.css')}}">
+</head>
+<body>
+    <script>
+      document.addEventListener('DOMContentLoaded',function(){
+        if("{{query.station_leave_permission}}" === "no"){
+          document.getElementById('stationleaving').style.display = "none";
+
+        };
+        //document.getElementById('from_fnan').innerHTML = "{{station_info.from_type}}";
+        //document.getElementById('to_fnan').innerHTML = "{{station_info.to_type}}";
+      })
+    </script>
+    <center>
+        <br><br>
+        <div style="font-size: 40px">
+        <u><b>INDIAN INSTITUTE OF INFORMATION TECHNOLOGY BHAGALPUR</b></u></div>
+        <h1><u><b>LEAVE APPLICATION</b></u></h1>
+        <a href="#" onclick="window.print()">Print</a>
+        <h3>(except Casual Leave, please see note below)</h3><br>
+    <table style="width:90%">
+        <col style="width:2%">
+    <col style="width:85%">
+    <col style="width:3%">
+    <colgroup span="4"></colgroup>
+        <tr>
+            <th><div style="font-size: 20px">1.</div></th>
+            <th><div style="font-size: 20px"> Name of the <br>applicant</div></th>
+            <td colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt" value="{{info.name}}"></td>
+        </tr>
+        <tr>
+            <th rowspan="2" scope="rowgroup"><div style="font-size:20px">2.</th>
+            <th scope="row"><div style="font-size: 21px"><b>Designation</b></div></th>
+            <td colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt" value="{{info.position}}"></td>
+        </tr>
+        <tr>
+            <th scope="row"><div style="font-size: 21px"><b>Dept. / Section / Centre</b></div>
+            </th>
+            <td colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt" value="{{info.department}}"></div></td>
+        </tr>
+        <tr>
+            <th><div style="font-size: 20px">3.</div></th>
+            <th><div style="font-size: 21px">Nature & Period of Leave
+                    (For Spl. CL, Commuted Leave,
+                    Maternity Leave, Paternity Leave etc.
+                    please attach supporting papers)</div>
+            </th>
+            <td> &emsp; Nature<br><br><input type="text" class="text-line" name="" style="font-size: 15pt" value="{{query.nature}}"></td>
+            <td> &emsp; From<br><br><input type="text" class="text-line" name="" style="font-size: 12pt" value="{{query.leave_from}}"></td>
+            <td> &emsp; To<br><br><input type="text" class="text-line" name="" style="font-size: 12pt" value="{{query.leave_upto}}"></td>
+            <td> &emsp; No. of Days<br><br><input type="number" class="text-line" name="" style="font-size: 15pt" value="{{query.no_of_days}}"></td>
+        </tr>
+        <tr>
+            <th rowspan="2" scope="rowgroup"><div style="font-size: 20px" >4.</div></th>
+            <th rowspan="2" scope="rowgroup"><div style="font-size: 20px" >Holidays,<br>
+                Prefixing / Suffixing</div></th>
+            <td> &emsp; Prefix</td>
+            <td> &emsp; From<br><br><input type="text" class="text-line" name="" style="font-size: 12pt" value="{{query.prefix_from}}"></td>
+            <td> &emsp; To<br><br><input type="text" class="text-line" name="" style="font-size: 12pt" value="{{query.prefix_upto}}"></td>
+            <td> &emsp; No. of Days<br><br><input type="number" class="text-line" name="" style="font-size: 15pt" value="{{query.prefix_days}}"></td>
+        </tr>
+            <td> &emsp; Suffix</td>
+            <td> &emsp; From<br><br><input type="text" class="text-line" name="" style="font-size: 12pt" value="{{query.suffix_from}}"></td>
+            <td> &emsp; To<br><br><input type="text" class="text-line" name="" style="font-size: 12pt"  value="{{query.suffix_upto}}"></td>
+            <td> &emsp; No. of Days<br><br><input type="number" class="text-line" name="" style="font-size: 15pt"  value="{{query.suffixfix_days}}"></td>
+        <tr>
+            <th><div style="font-size: 20px" >5.</div></th>
+            <th><div style="font-size: 20px" >Reasons for<br> leave<br></div></th>
+            <th colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt" value="{{query.reason}}" ></th>
+        </tr>
+            <th><div style="font-size: 20px">6.</div></th>
+            <th><div style="font-size: 20px">Whether the applicant proposes to avail of Leave Travel Concession during
+                the ensuing leave.If yes, fill LTC (form no. 11)</div></th>
+            <th colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.travel_conseesion}}"></th>
+        </tr>
+        <tr>
+            <th><div style="font-size: 20px" >7.</div></th>
+            <th><div style="font-size: 20px" >Whether Station Leave permission required or not<br></div></th>
+            <th colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.station_leave_permission}}"></th>
+        </tr>
+        <tr>
+            <th><div style="font-size: 20px" >8.</div></th>
+            <th><div style="font-size: 20px" >Are you holding any other position like HOD etc
+                . If so, please enclose the approval/
+                consent of appropriate authority for the period of leave.</div></th>
+            <th colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt" value="{{query.position}}"></td>
+        </tr>
+        <tr>
+            <th><div style="font-size: 20px" >*9.</div></th>
+            <th><div style="font-size: 20px" >Arrangement for classes during the proposed leave (for faculty members)</div></th>
+            <td colspan="2" scope="colgroup"><h3> &emsp; No. of classes to be missed</h3><br><br><input type="number" class="text-line" name="" style="font-size: 15pt" value="{{query.missed_classes}}"></td>
+            <td colspan="2" scope="colgroup"><h3>Alternative Arrangement</h3><br><br><input type="text" class="text-line" name="" style="font-size: 15pt"></td>
+        </tr>
+        <tr>
+            <th rowspan="2" scope="rowgroup"><div style="font-size: 20px" >10.</div></th>
+            <th rowspan="2" scope="rowgroup"><div style="font-size: 20px" >Address while on leave<br></div></th>
+            <td colspan="4" scope="colgroup"><input type="text" class="text-line" name="" placeholder="Address" style="font-size: 15pt" value="{{query.address}}"> &emsp; &emsp; <input type="text" class="text-line" name="" placeholder="district" style="font-size: 15pt" value="{{query.district}}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" scope="colgroup"><h3>Contact Phone No. (if any) </h3><br><br><input type="text" class="text-line" name="" style="font-size: 15pt" value="{{query.phone_no}}"></td>
+            <td colspan="2" scope="colgroup"><h3>Pin </h3><br><br><input type="text" class="text-line" name="" style="font-size: 15pt"></td>
+        </tr>
+    </table>
+    </center>
+    <h3><div class="arrange">11. &emsp; In the event of my resignation, voluntary retirement, dismissal or removal from service or in the event of termination of my
+service,<br> &emsp; &emsp; &emsp; I undertake to refund:<br><br>
+&emsp; &emsp; (a) &emsp; The leave salary drawn for the period of Earned Leave, which would not have been admissible, had that leave not been credited in advance<br><br>
+&emsp; &emsp; (b)  (i) The difference between the leave salary drawn during commuted leave and that admissible during half pay leave.<br><br>
+&emsp; &emsp; &emsp; (ii) The leave salary drawn during leave not due.<br><br><br>
+<h3>&emsp; &emsp;
+
+</td>
+</h3>
+</div>
+</tr>
+<h3>
+<div style="text-align: right; margin: 80px;">Emp_No.: <input type="text" class="text-line" name="" style="font-size: 15pt" value="{{info.name}}"><br><br>
+Designation : <input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{info.position}}"><br><br></h3>
+</div><br><br><br>
+<div style="border: 2px solid black; margin-left:90px; width:85%;">
+<br>
+<center>
+<h3><b>Note:-</b>&emsp; &emsp;1.&emsp;All kinds of leave, except Casual Leave should be applied in this form and forwarded to Admn./ Faculty Affairs after recommendation of<br> &emsp; &emsp; &emsp; &emsp; &emsp; the concerned HODs/HOSs/HOCs. Casual Leave should be applied in the CL Card maintained in the respective Dept./Section/Centre.<br><br>
+2.&ensp;In case the leave is requested for Project related work, please mention the Project No. at the top of the application and forward <br>to Dean, R&D through the concerned HOD/HOC/HOS.<br><br>
+*3. &emsp; If the proposed leave is during the semester period, please furnish the details of alternate arrangement for the missed classes.</h3>
+</div><br><br>
+</center>
+<hr>
+<center>
+  <div id="stationleaving" style="display:block">
+        <table style="width:90%">
+        <br>
+        <tr>
+            <th>
+            <h2><u>STATION LEAVE PERMISSION</u></h2><br>
+            <h2>This is to inform you that I am proceeding on leave w.e.f.
+                <input type="text" class="text-line"  value="{{station_info.from_date}}" style="font-size: 15pt">
+                <div class="cls">and will be out of station till  <input type="text" class="text-line" name="" style="font-size: 15pt" value="{{station_info.to_date}}">
+                <br><br><br>Address during leave:<input type="text" class="text-line" name="address" style="font-size: 15pt"  value="{{query.address}}"> &emsp; Contact Phone No. (if any): <input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.phone_no}}">
+                <br><br>
+
+                <div style="text-align: right">Name:<input type="text" class="text-line" name="" style="font-size: 15pt" value="{{info.name}}">
+                <br><br>Emp_No.: <input type="text" class="text-line" name="" style="font-size: 15pt" value="{{info.id}}">
+                <br><br>Designation: <input type="text" class="text-line" name=""  style="font-size: 15pt"  value="{{info.position}}">
+                <br><br>Dept./Sec./Centre: <input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{info.department}}">
+            </div>
+            </h2>
+            </div>
+            </th>
+        </tr>
+    </table>
+  </div>
+</center>
+<hr>
+<center>
+    <h2><u><b>FOR OFFICE USE</b></u></h2>
+    <table style="width:90%">
+        <caption>
+        <div style="text-align: left"><h3><b>Certified that the following leave is admissible to:</b></h3></div></caption>
+        <col style="width:80%">
+        <col style="width:10%">
+        <colgroup span="4"></colgroup>
+        <tr>
+            <th><div style="font-size: 20px"> Name of the <br>applicant</div></th>
+            <td colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{info.name}}"></td>
+        </tr>
+        <tr>
+            <th scope="row"><div style="font-size: 21px"><b>Designation</b></div></th>
+            <td colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{info.position}}"></td>
+        </tr>
+        <tr>
+            <th scope="row"><div style="font-size: 21px"><b>Dept. / Section / Centre</b></div>
+            </th>
+            <td colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{info.department}}"></div></td>
+        </tr>
+        <tr>
+            <th><div style="font-size: 21px">Nature & Period of Leave Admissible</div>
+            </th>
+            <td> &emsp; Nature<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.nature}}"></td>
+             <td> &emsp; To<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.leave_from}}"></td>
+            <td> &emsp; No. of Days<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.leave_upto}}"></td>
+        </tr>
+        <tr>
+            <th rowspan="2" scope="rowgroup"><div style="font-size: 20px" >Holidays,<br>
+                Prefixing / Suffixing</div></th>
+            <td> &emsp; Prefix</td>
+            <td> &emsp; From<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.prefix_from}}"></td>
+            <td> &emsp; To<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"   value="{{query.prefix_upto}}"></td>
+            <td> &emsp; No. of Days<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.prefix_days}}"></td>
+        </tr>
+            <td> &emsp; Suffix</td>
+            <td> &emsp; From<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.suffix_from}}" ></td>
+            <td> &emsp; To<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"   value="{{query.suffix_upto}}"></td>
+            <td> &emsp; No. of Days<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"   value="{{query.suffix_days}}"></td>
+        <tr>
+            <th><div style="font-size: 20px" >Station leave<br></div></th>
+            <td> &emsp; From<br><br><input type="text" class="text-line" name="" style="font-size: 15pt" value="{{query.leave_from}}"></td>
+            <td> &emsp; To<br><br><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.leave_upto}}"></td>
+            <td colspan="2" scope="colgroup"> &emsp; No. of Days &emsp; <input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{query.no_of_days}}"></td>
+        </tr>
+            <th rowspan="3" scope="rowgroup"><div style="font-size: 20px">Balance of leave as on <input type="text" class="text-line" name="" style="font-size: 15pt"></div></th>
+            <td> &emsp; Vocational Leave</td>
+            <td colspan="3" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{info.available_vl}}"> &emsp; Days
+            </td>
+        </tr>
+        <tr>
+            <td> &emsp; Earned Leave</td>
+            <td colspan="3" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt"  value="{{info.available_el}}"> &emsp; Days
+            </td>
+        </tr>
+        <tr>
+            <td> &emsp; Half Pay Leave</td>
+            <td colspan="3" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt" value="{{info.available_pl}}"> &emsp; Days
+            </td>
+        </tr>
+
+    </table>
+    <br><br>
+</center>
+</body>
+</html>

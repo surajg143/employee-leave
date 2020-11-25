@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OTP Page</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='otp.css')}}">
+</head>
+<body>
+	<center>
+		<table><tr><td><a href="https://www.iiitbh.ac.in/"><img src="{{url_for('static',filename='150dpi.png')}}" height=80px></a></td><td><h1>भारतीय सूचना प्रौद्योगिकी संस्थान भागलपुर<br>Indian Institute of Information Technology Bhagalpur</h1></td></tr></table>
+	</center>
+        <h1>Reset Password</h1>
+        <center>{{message}}</center>
+        <form action="{{url_for('reset')}}" method = "post">
+          <div id = "otp" style="font-size:30px">
+	         <center><h2 style="margin: 150px"> OTP<br><br>
+	           <input type="number" name="otp" required placeholder="One Time Password" class="text-line" style="font-size:20px"><br><br>
+	           <button class="btn">Submit</button></h2></center>
+           </div>
+        </form>
+</body>
+</html>

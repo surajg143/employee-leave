@@ -1,0 +1,47 @@
+<html>
+<title>Rejoinning</title>
+<head>
+	<link  rel="stylesheet" type="text/css" href="{{url_for('static', filename='leave.css')}}">
+</head>
+<body>
+	<center>
+		<a href="#" onclick="window.print()">Print</a>
+		<div id="img">
+	<form method = "post" action="{{url_for('rejoin')}}">
+	<table style="width:90%">
+		<tr>
+			<th>
+			<h1>INDIAN INSTITUTE OF INFORMATION TECHNOLOGY BHAGALPUR</h1>
+
+		</th>
+		</tr>
+		<br>
+		<tr>
+			<th>
+			<h2><u><strong>RE-JOINING REPORT</strong></u></h2><br>
+			<h2>This is to inform you that I have re-joined duty on  <input type="date" class="text-line" name="rejoin_date" placeholder="" style="font-size: 15pt" required> at FN<input type="radio" name="fnan">AN <input type="radio" name="fnan"> <input type="time" required>  after <div class="cls"> availing leave from  <input type="text" class="text-line" name="" placeholder="" style="font-size: 15pt" id="leave_from"> to <input type="text" class="text-line" name="" placeholder="" style="font-size: 15pt" id="leave_upto">(FN / AN)<br><br>
+
+			<div style="text-align: right">Name: <input type="text" class="text-line" name="" placeholder="" style="font-size: 15pt" id="name"><br><br> Emp_No.: <input type="text" class="text-line" name="" placeholder="" style="font-size: 15pt" id="emp_id">
+			<br><br>Designation: <input type="text" class="text-line" name="" placeholder="" style="font-size: 15pt" id="position"> <br><br>
+			Dept./Sec./Centre: <input type="text" class="text-line" name="" placeholder="" style="font-size: 15pt" id="department"></h2>
+			</div>
+			</th>
+		</div>
+		</tr>
+	</table>
+	<center><h2><button class="btn" style="height:30px">Submit</button></h2></center>
+</form>
+
+
+</div>
+</center>
+<script>
+	document.querySelector('#name').value = "{{info.name}}";
+	document.querySelector('#emp_id').value = "{{info.id}}";
+	document.querySelector('#department').value = "{{info.department}}";
+	document.querySelector('#position').value = "{{info.position}}";
+	document.querySelector('#leave_from').value ="{{leave_from}}";
+	document.querySelector('#leave_upto').value = "{{leave_upto}}";
+</script>
+</body>
+</html>

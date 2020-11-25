@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block title %}
+Welcome
+{% endblock %}
+{% block body %}
+
+
+<nav class="navbar navbar-inverse" style="height:50px">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://www.iiitbh.ac.in/">IIIT</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{{url_for('home')}}">Home</a></li>
+      {% if leaveapplied == 1 %}
+        <li><a href = "{{url_for('printleave')}}">Print Leave</a></li>
+        <li><a href = "{{url_for('rejoin')}}">Rejoin</a></li>
+        <li><a href = "{{url_for('extend')}}">Extend Leave</a></li>
+      {% else %}
+        <li class="blink"><a href = "{{url_for('leave')}}">Apply for leave</a></li>
+      {% endif %}
+      {% if hod == 1 or admin==1 %}
+        <li><a href= "{{url_for('list')}}">List of Applicant</a></li>
+      {% endif %}
+      {% if admin==1 %}
+        <li><a href="{{url_for('manage')}}">Manage Employee</a></li>
+      {% endif %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if hod == 1 %}
+        <li><a href="#">HOD</a></li>
+      {% endif %}
+      {% if admin==1 %}
+        <li><a href="#">Admin</a></li>
+      {% else %}
+        <li><a href="#">Staff</a></li>
+      {% endif %}
+      <li><a href="{{url_for('viewhistory')}}"><span class="glyphicon glyphicon-user"></span>{{userdetail.name}}</a></li>
+      <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<br><br>
+<center>
+  <h1>Employee Profile</h1>
+  <br>
+  <h1><i class="far fa-user" ></i></h1>
+  <br>
+  Employee Id : {{userdetail.id}}
+  <br>
+  Employee Name : {{userdetail.name}}
+  <br>
+  Employee Age : {{userinfo.age}}
+  <br>
+  No. of Available EL : {{userinfo.available_el}}
+  <br>
+  No. of Available CL : {{userinfo.available_cl}}
+  <br>
+  No. of Available PL : {{userinfo.available_pl}}
+  <br>
+  {% if admin == 0 %}
+  Faculty Branch : {{userinfo.department}}
+  {% endif %}
+  <br><br>
+  <button class="btn">Update</button>
+  <center><p><h3>Kindly Keep Your profile Updated</h3></p></center>
+
+  <script>
+  </script>
+
+
+{% endblock %}

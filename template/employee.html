@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% block title %}
+Manage Employee
+{% endblock %}
+
+
+
+{% block body %}
+<nav class="navbar navbar-inverse" style="height:50px">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://www.iiitbh.ac.in/">IIIT</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="{{url_for('home')}}">Home</a></li>
+      {% if leaveapplied == 1 %}
+        <li><a href = "{{url_for('printleave')}}">Print Leave</a></li>
+        <li><a href = "{{url_for('rejoin')}}">Rejoin</a></li>
+        <li><a href = "{{url_for('extend')}}">Extend Leave</a></li>
+      {% else %}
+        <li class="blink"><a href = "{{url_for('leave')}}">Apply for leave</a></li>
+      {% endif %}
+        <li><a href= "{{url_for('list')}}">List of Applicant</a></li>
+        <li class="active"><a href="{{url_for('manage')}}">Manage Employee</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Admin</a></li>
+      <li><a href="{{url_for('viewhistory')}}"><span class="glyphicon glyphicon-user"></span>{{info.name}}</a></li>
+      <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<h1><center>Manage Faculty</center></h1>
+<h4>
+<div id="alert"></div><br>
+{% for list in lists %}
+<div class="fac_list">
+  <br><div id="{{list.id}}"><i class="far fa-user"></i> {{list.id}} &emsp; {{list.name}} &emsp; {{list.position}} &emsp;  <button class="btn" onclick="remove({{list.id}})">Remove From Positon</button></div>
+</div>
+{% endfor %}
+</h4>
+<script>
+  function remove(id){
+      var xhttp = new XMLHttpRequest;
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector("#alert").innerHTML = "Successfully Updated!!!";
+          }
+      }
+      xhttp.open("POST",`/remove/${id}`);
+      xhttp.send();
+      document.getElementById(`${id}`).style.display = "none";
+    }
+</script>
+{% endblock %}

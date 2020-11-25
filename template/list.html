@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+{% block title %}
+Admin Page
+{% endblock %}
+{% block body %}
+<nav class="navbar navbar-inverse" style="height:50px">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://www.iiitbh.ac.in/">IIIT</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="{{url_for('home')}}">Home</a></li>
+      {% if leaveapplied == 1 %}
+        <li><a href = "{{url_for('printleave')}}">Print Leave</a></li>
+        <li><a href = "{{url_for('rejoin')}}">Rejoin</a></li>
+        <li><a href = "{{url_for('extend')}}">Extend Leave</a></li>
+      {% else %}
+        <li class="blink"><a href = "{{url_for('leave')}}">Apply for leave</a></li>
+      {% endif %}
+      {% if hod == 1 or admin==1 %}
+        <li class="active"><a href= "{{url_for('list')}}">List of Applicant</a></li>
+      {% endif %}
+      {% if admin==1 %}
+        <li><a href="{{url_for('manage')}}">Manage Employee</a></li>
+      {% endif %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if admin==1 %}
+        <li><a href="#">Admin</a></li>
+      {% else %}
+        <li><a href="#">Staff</a></li>
+      {% endif %}
+      <li><a href="{{url_for('viewhistory')}}"><span class="glyphicon glyphicon-user"></span>{{info.name}}</a></li>
+      <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div id="alert"></div>
+ {% for list in lists %}
+ <div class="fac_list"><p>
+   <h3><i class="far fa-user"></i> Applicant ID: {{list.id}}  &emsp;  Applicant Name: {{list.name}}</h3>
+   <br>Applicant Category: Faculty  &emsp;  Leave From:{{list.leave_from}} &emsp; Upto:{{list.leave_upto}} &emsp; Applied on:{{list.cur_date}}
+   <br>
+   <div id="facultytext{{list.id}}" style="display:none"><textarea id="facultytextarea{{list.id}}" rows="4" cols="50" maxlength="150" placeholder="Reason for Disapproval"autofocus> </textarea><button class="btn" onclick="submitdisapprove({{list.id}},'faculty')"> Submit</button></div>
+   <br><div id="faculty{{list.id}}"><button class="btn" onclick="approve({{list.id}},'faculty')">Approve</button>  <button class="btn" onclick="disapprove({{list.id}},'faculty')">Disapprove</button></div>
+   <br><a class="btn" href="/applicant/{{list.id}}/faculty">Details</a>
+</p></div>
+  {% endfor %}
+
+
+  <div id="admin">
+    {% for list in lists_admin %}
+    <div class="fac_list"><p>
+      <h3><i class="far fa-user"></i> Applicant ID: {{list.id}}  &emsp;  Applicant Name: {{list.name}}</h3>
+      <br>Applicant Category: Admin Staff  &emsp;  Leave From:{{list.leave_from}} &emsp; Upto:{{list.leave_upto}} &emsp; Applied on:{{list.cur_date}}
+      <br>
+      <div id ="admintext{{list.id}}" style="display:none"><textarea id="admintextarea{{list.id}}" rows="4" cols="50" maxlength="150" placeholder="Reason for Disapproval"autofocus> </textarea><button class="btn" onclick="submitdisapprove({{list.id}},'admin')">Submit</button></div>
+      <br><div id="admin{{list.id}}"><button class="btn" onclick="approve({{list.id}},'admin')">Approve</button>  <button class="btn" onclick="disapprove({{list.id}},'admin')">Disapprove</button></div>
+      <br><a class="btn" href="/applicant/{{list.id}}/admin">Details</a>
+   </p></div>
+    {% endfor %}
+  </div>
+
+  <div id="others">
+    {% for list in lists_others %}
+    <div class="fac_list"><p>
+      <h3><i class="far fa-user"></i> Applicant ID: {{list.id}}  &emsp;  Applicant Name: {{list.name}}</h3>
+      <br>Applicant Category: Technical Staff  &emsp;  Leave From:{{list.leave_from}} &emsp; Upto:{{list.leave_upto}} &emsp; Applied on:{{list.cur_date}}
+      <br>
+      <div id ="otherstext{{list.id}}" style="display:none"><textarea id="otherstextarea{{list.id}}" rows="4" cols="50" maxlength="150" placeholder="Reason for Disapproval"autofocus> </textarea><button class="btn" onclick="submitdisapprove({{list.id}},'others')">Submit</button></div>
+      <br><div id="others{{list.id}}"><button class="btn" onclick="approve({{list.id}},'others')">Approve</button>  <button class="btn" onclick="disapprove({{list.id}},'others')">Disapprove</button></div>
+      <br><a class="btn" href="/applicant/{{list.id}}/others">Details</a>
+   </p></div>
+   {% endfor %}
+  </div>
+
+  <div id="staff">
+    {% for list in lists_staff %}
+    <div class="fac_list"><p>
+      <h3><i class="far fa-user"></i> Applicant ID: {{list.id}}  &emsp;  Applicant Name: {{list.name}}</h3>
+      <br>Applicant Category: Other Staff &emsp; Leave From:{{list.leave_from}} &emsp; Upto:{{list.leave_upto}} &emsp; Applied on:{{list.cur_date}}
+      <br>
+      <div id ="stafftext{{list.id}}" style="display:none"><textarea id="stafftextarea{{list.id}}" rows="4" cols="50" maxlength="150" placeholder="Reason for Disapproval"autofocus> </textarea><button class="btn" onclick="submitdisapprove({{list.id}},'staff')">Submit</button></div>
+      <br><div id="staff{{list.id}}"><button class="btn" onclick="approve({{list.id}},'staff')">Approve</button>  <button class="btn" onclick="disapprove({{list.id}},'staff')">Disapprove</button></div>
+      <br><a class="btn" href="/applicant/{{list.id}}/staff">Details</a>
+   </p></div>
+    {% endfor %}
+  </div>
+
+   <div id="confirmation"></div>
+
+  <script>
+  function approve(id,department){
+    var xhttp = new XMLHttpRequest;
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          document.querySelector("#alert").innerHTML = `Successfully Updated ${id}`;
+        }
+    }
+    xhttp.open("POST",`/approve/${id}/${department}`);
+    xhttp.send();
+    document.getElementById(`${department}${id}`).style.display = "none";
+    document.getElementById(`${department}text${id}`).style.display = "none";
+  }
+
+  function disapprove(id,department){
+    document.getElementById(`${department}text${id}`).style.display = "block";
+  }
+
+  function submitdisapprove(id,department){
+    var xhttp = new XMLHttpRequest;
+    var comment = document.getElementById(`${department}textarea${id}`).value
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          document.querySelector("#alert").innerHTML = `Successfully Updated ${id}`;
+        }
+    }
+    xhttp.open("POST",`/disapprove/${id}/${department}`);
+    const data = new FormData();
+    data.append('comment', comment);
+    xhttp.send(data);
+    document.getElementById(`${department}${id}`).style.display = "none";
+    document.getElementById(`${department}text${id}`).style.display = "none";
+  }
+
+  </script>
+ {% endblock %}

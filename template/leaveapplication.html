@@ -1,0 +1,221 @@
+<html>
+<title>Leave Appliaction</title>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='leaveapp.css')}}">
+</head>
+<body>
+
+	<center>
+		<br><br>
+		<div style="font-size: 40px">
+		<u><b>INDIAN INSTITUTE OF INFORMATION TECHNOLOGY BHAGALPUR</b></u></div>
+		<h1><u><b>LEAVE APPLICATION</b></u></h1>
+		<h3>(except Casual Leave, please see note below)</h3><br>
+	<form action="{{url_for('leave')}}" method="post">
+	<table style="width:90%">
+		<col style="width:2%">
+	<col style="width:85%">
+	<col style="width:3%">
+	<colgroup span="4"></colgroup>
+		<tr>
+			<th><div style="font-size: 20px">1.</div></th>
+			<th><div style="font-size: 20px"> Name of the <br>applicant</div></th>
+			<td colspan="4" scope="colgroup"><input type="text" class="text-line" name="name" style="font-size: 15pt" id="name"></td>
+		</tr>
+		<tr>
+			<th rowspan="2" scope="rowgroup"><div style="font-size:20px">2.</th>
+			<th scope="row"><div style="font-size: 21px"><b>Designation</b></div></th>
+			<td colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt" id="position"></td>
+		</tr>
+		<tr>
+			<th scope="row"><div style="font-size: 21px"><b>Dept. / Section / Centre</b></div>
+        	</th>
+			<td colspan="4" scope="colgroup"><input type="text" class="text-line" name="" style="font-size: 15pt" id="department"></div></td>
+		</tr>
+		<tr>
+			<th><div style="font-size: 20px">3.</div></th>
+			<th><div style="font-size: 21px">Nature & Period of Leave
+					(For Spl. CL, Commuted Leave,
+					Maternity Leave, Paternity Leave etc.
+					please attach supporting papers)</div>
+			</th>
+			<td> &emsp; Nature<br><br><select class="text-line" name="nature" style="font-size: 15pt">
+				<option value="CL">CL</option>
+				<option value="PL">PL</option>
+				<option value="EL">EL</option>
+				<option value="VL">VL</option></td>
+			<td> &emsp; From<br><br><input type="date" class="text-line" name="leave_from" style="font-size: 15pt" id="leave_from" required></td>
+			<td> &emsp; To<br><br><input type="date" class="text-line" name="leave_upto" style="font-size: 15pt" id="leave_upto" required></td>
+			<td> &emsp; No. of Days<br><a href="javascript:calculate()"> &emsp; Calculate</a><br><input type="number" class="text-line" name="no_of_days" style="font-size: 15pt" id="duration" required></td>
+		</tr>
+		<tr>
+			<th rowspan="2" scope="rowgroup"><div style="font-size: 20px" >4.</div></th>
+			<th rowspan="2" scope="rowgroup"><div style="font-size: 20px" >Holidays,<br>
+				Prefixing / Suffixing</div></th>
+			<td> &emsp; Prefix</td>
+			<td> &emsp; From<br><br><input type="date" class="text-line" name="prefix_from" style="font-size: 15pt" required id="pf"></td>
+			<td> &emsp; To<br><br><input type="date" class="text-line" name="prefix_upto" style="font-size: 15pt" required id="pt"></td>
+			<td> &emsp; No. of Days<br><a href="javascript:calculate1()"> &emsp; Calculate</a><br><input type="number" class="text-line" name="prefix_days" style="font-size: 15pt" required id="pd"> </td>
+		</tr>
+			<td> &emsp; Suffix</td>
+			<td> &emsp; From<br><br><input type="date" class="text-line" name="suffix_from" style="font-size: 15pt" required id="sf"></td>
+			<td> &emsp; To<br><br><input type="date" class="text-line" name="suffix_upto" style="font-size: 15pt" required  id="st"></td>
+			<td> &emsp; No. of Days<br><a href="javascript:calculate2()"> &emsp; Calculate</a><br><input type="number" class="text-line" name="suffix_days" style="font-size: 15pt" required  id="sd"></td>
+		<tr>
+			<th><div style="font-size: 20px" >5.</div></th>
+			<th><div style="font-size: 20px" >Reasons for<br> leave<br></div></th>
+			<td colspan="4" scope="colgroup"><input type="text" class="text-line" name="reason" style="font-size: 15pt" required></td>
+		</tr>
+			<th><div style="font-size: 20px">6.</div></th>
+			<th><div style="font-size: 20px">Whether the applicant proposes to avail of Leave Travel Concession during
+				the ensuing leave. If yes, please submit the Application for LTC (Form
+				No. 11) duly filled in along with this application.</div></th>
+			<th colspan="4" scope="colgroup"><h3><input type="radio" name="travel_concession" value="yes">Yes &emsp; &emsp;  &emsp; &emsp; <input type="radio" name="travel_concession" value="no">No</h3></th>
+		</tr>
+		<tr>
+			<th><div style="font-size: 20px" >7.</div></th>
+			<th><div style="font-size: 20px" >Whether Station Leave permission required or not<br></div></th>
+			<th colspan="4" scope="colgroup"><h3><input type="radio" name="station_leave_permission" value="yes" id="yes" onclick="myfunc()">Yes
+			<div id = "station_leave">
+				Out of Station From : <input type="Date" class="text-line" name="from_date" style="font-size: 15pt">FN<input type="radio" name="from_fnan" value="FN">AN <input type="radio" name="from_fnan" value="AN"> <input type="time" name="from_time" id="from_time">
+				<div class="cls">Out of Station Till : <input type="date" class="text-line" name="to_date" style="font-size: 15pt">FN<input type="radio" name="to_fnan" value="FN">AN <input type="radio" name="to_fnan" value="AN">
+					 <input type="time" name="to_time"></div>
+			</div>
+				 &emsp; &emsp;  &emsp; &emsp;
+			<input type="radio" name="station_leave_permission" value="no" id="no">No</h3></td>
+		</tr>
+		<tr>
+			<th><div style="font-size: 20px" >8.</div></th>
+			<th><div style="font-size: 20px" >Are you holding any other position like HOD, HOC, HOS, Warden,
+				Chairman of a Committee etc. If so, please enclose the approval/
+				consent of appropriate authority for the period of leave.</div></th>
+			<th colspan="4" scope="colgroup"><h3><input type="radio" name="position" value="yes" onclick="myfunc2()">Yes &emsp; &emsp;  &emsp; &emsp;
+				<div id="requestform">
+					Assign Duty To : <input type="text" class="text-line" name="assign_duty_to_name" style="font-size: 15pt" placeholder="Name"> With<input type="email" class="text-line" name="assign_duty_to_email" style="font-size: 15pt" placeholder="Email">.<br>
+					<br>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Contact_No :- <input type="number" class="text-line" name="assign_duty_to_contact_no" style="font-size: 15pt"><br>
+				</div>
+			<input type="radio" name="position" value="no" id="requestformno">No</h3></th>
+		</tr>
+		<tr>
+			<th><div style="font-size: 20px" >*9.</div></th>
+			<th><div style="font-size: 20px" >Arrangement for classes during the proposed leave (for faculty members)</div></th>
+			<td colspan="2" scope="colgroup"><h3> &emsp; No. of classes to be missed</h3><br><br><input type="text" class="text-line" style="font-size: 15pt" name="missed_classes" required></td>
+			<td colspan="2" scope="colgroup"><h3>Alternative Arrangement</h3><br><br><input type="text" class="text-line" name="" style="font-size: 15pt"></td>
+		</tr>
+		<tr>
+			<th rowspan="2" scope="rowgroup"><div style="font-size: 20px" >10.</div></th>
+			<th rowspan="2" scope="rowgroup"><div style="font-size: 20px" >Address while on leave<br></div></th>
+			<td colspan="4" scope="colgroup"><input type="text" class="text-line" name="address" placeholder="Address" style="font-size: 15pt" required> &emsp;
+				 <input type="text" class="text-line" name="district" placeholder="District" style="font-size: 15pt" required></td>
+		</tr>
+		<tr>
+			<td colspan="2" scope="colgroup"><h3>Contact Phone No. (if any) </h3><br><br><input type="text" class="text-line" name="phone_no" style="font-size: 15pt" required></td>
+			<td colspan="2" scope="colgroup"><h3>Pin </h3><br><br><input type="text" class="text-line" name="pin" style="font-size: 15pt" required></td>
+		</tr>
+	</table>
+	<br>
+
+	</center>
+
+
+	<h3><div class="arrange">11. &emsp; In the event of my resignation, voluntary retirement, dismissal or removal from service or in the event of termination of my
+service,<br> &emsp; &emsp; &emsp; I undertake to refund:<br><br>
+&emsp; &emsp; (a) &emsp; The leave salary drawn for the period of Earned Leave, which would not have been admissible, had that leave not been credited in advance<br><br>
+&emsp; &emsp; (b)  (i) The difference between the leave salary drawn during commuted leave and that admissible during half pay leave.<br><br>
+&emsp; &emsp; &emsp; (ii) The leave salary drawn during leave not due.<br><br><br>
+</div>
+</tr><br>
+<h3>
+<div style="text-align: right; margin: 80px;">Emp_No.: <input type="text" class="text-line" name="" style="font-size: 15pt" id="emp_id"><br><br>
+Designation : <input type="text" class="text-line" name="" style="font-size: 15pt " id="designation"><br><br>
+<br><br>Upload Signature: <input type="file" class="text-line" name="image" style="font-size: 15pt" id="image" oninput="filesize(this)">
+<br>File Size should be less than 50KB<br>Only, JPG, JPEG
+</div><br><br><br></h3>
+<div style="border: 2px solid black; margin-left:90px; width:85%;">
+<br>
+<center>
+<h3><b>Note:-</b>&emsp; &emsp;1.&emsp;All kinds of leave, except Casual Leave should be applied in this form and forwarded to Admn./ Faculty Affairs after recommendation of<br> &emsp; &emsp; &emsp; &emsp; &emsp; the concerned HODs/HOSs/HOCs. Casual Leave should be applied in the CL Card maintained in the respective Dept./Section/Centre.<br><br>
+2.&ensp;In case the leave is requested for Project related work, please mention the Project No. at the top of the application and forward <br>to Dean, R&D through the concerned HOD/HOC/HOS.<br><br>
+*3. &emsp; If the proposed leave is during the semester period, please furnish the details of alternate arrangement for the missed classes.</h3>
+</div><br><br>
+<center><h2><button class="btn">Submit</button></h2></center>
+</form>
+<center><button class="btn" onclick="window.print()">Print</button></center>
+</center>
+<script>
+
+function filesize(elem){
+	document.cookie = `filesize=${elem.files[0].size}`
+}
+	document.addEventListener('DOMContentLoaded',function(){
+		document.getElementById('station_leave').style.display = "none";
+		document.getElementById('requestform').style.display = "none";
+		document.getElementById('no').onclick = function(){
+			if(document.getElementById('station_leave').style.display === "block"){
+				document.getElementById('station_leave').style.display = "none";
+			}
+			else {
+					document.getElementById('station_leave').style.display = "none";
+			}
+		}
+		document.getElementById('requestformno').onclick = function(){
+			if(document.getElementById('requestform').style.display === "block"){
+				document.getElementById('requestform').style.display = "none";
+			}
+			else {
+					document.getElementById('requestform').style.display = "none";
+			}
+		}
+
+	})
+	document.getElementById("name").value = "{{query.name}}";
+	document.getElementById("emp_id").value = "{{query.id}}";
+	document.getElementById("department").value = "{{query.department}}";
+	document.getElementById('position').value = "{{query.position}}";
+	if (document.getElementById('position').value === "None")
+		document.getElementById('designation').value = "Professor";
+	else {
+		document.getElementById('designation').value = "{{query.position}}";
+
+	}
+	function calculate(){
+		d1 = document.getElementById("leave_from").value;
+		d2 = document.getElementById("leave_upto").value;
+		var date1 = new Date(d1);
+		var date2 = new Date(d2);
+		var Difference_In_Time = date2.getTime() - date1.getTime();
+		var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+		document.getElementById("duration").value = Difference_In_Days;
+	}
+	function myfunc(){
+		document.getElementById('station_leave').style.display = "block";
+		//window.open("{{url_for('stationleave')}}");
+	}
+
+	function myfunc2(){
+		document.getElementById('requestform').style.display = "block";
+		//window.open("{{url_for('requestform')}}");
+
+
+	}
+	function calculate1(){
+		d1 = document.getElementById("pf").value;
+		d2 = document.getElementById("pt").value;
+		var date1 = new Date(d1);
+		var date2 = new Date(d2);
+		var Difference_In_Time = date2.getTime() - date1.getTime();
+		var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+		document.getElementById("pd").value = Difference_In_Days;
+	}
+	function calculate2(){
+		d1 = document.getElementById("sf").value;
+		d2 = document.getElementById("st").value;
+		var date1 = new Date(d1);
+		var date2 = new Date(d2);
+		var Difference_In_Time = date2.getTime() - date1.getTime();
+		var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+		document.getElementById("sd").value = Difference_In_Days;
+	}
+</script>
+</body>
+</html>
